@@ -1,21 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Button, 
+  Alert, 
+  SafeAreaView, 
+  Platform,
+  Dimensions } from 'react-native';
+
+const hanlePress = () =>(Alert.prompt("My title", "U pressed the button", 
+  text => console.log(text) 
+)
+);
 
 export default function App() {
+
+  console.log(Dimensions.get('screen'))
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={[styles.container]}>
+      <View style={styles.view}></View>
+    </SafeAreaView>
   );
 }
+
+const containerStyle = {backgroundColor:"orange"}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center', // Horizontal
+    // justifyContent: 'center', // Vertical
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
+
+  view: {
+    backgroundColor: "pink",
+    width: "100%",
+    height: "30%",
+  }
 });
