@@ -10,14 +10,16 @@ import {
   Platform,
   Dimensions } from 'react-native';
 
+import {useDimensions} from '@react-native-community/hooks';
+
 const hanlePress = () =>(Alert.prompt("My title", "U pressed the button", 
   text => console.log(text) 
-)
+  )
 );
 
 export default function App() {
 
-  console.log(Dimensions.get('screen'))
+  console.log(useDimensions())
 
   return (
     <SafeAreaView style={[styles.container]}>
