@@ -1,68 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  Button, 
-  Alert, 
-  SafeAreaView, 
-  Platform,
-  Image,
-  TouchableHighlight
-  } from 'react-native';
-
+// import { StatusBar } from 'expo-status-bar';
 import {
-  useDimensions,
-  useDeviceOrientation,
-} from '@react-native-community/hooks';
+  View,
+  Platform,
+  StatusBar,
+  StyleSheet,
+} from 'react-native';
 
-const hanlePress = () =>(Alert.prompt("My title", "U pressed the button", 
-  text => console.log(text) 
-  )
-);
+// import {useHeaderHeight} from 'react-navigation-stack';
 
-export default function App() {
+export default function App(){
 
-  console.log(useDimensions())
+  return(
 
-  const {landscape} = useDeviceOrientation();
+    <View style={{
+        backgroundColor: "#fff", 
+        flex: 1, 
+        flexDirection: "row", 
+        paddingTop: Platform.OS === "ios" ? 30 : 0,
+        justifyContent: "center", // main axis
+        alignItems: "center", // secondary axis
+      }}
+    >
+      <View style={[{width: 100, height: 200, alignSelf: "flex-start",}, styles.red]}
+      />
+      <View style={[styles.dimensions, styles.blue]}
+      />
+      <View style={[styles.dimensions, styles.gold]}
+      />
+      <View style={[styles.dimensions, styles.red]}
+      />
 
-  console.log("Finished \n")
+    </View>
 
-
-  return (
-    <SafeAreaView style={[styles.container]}>
-      <View style={[styles.view, {height: landscape ? "100%" : "60%"}]}></View>
-      {/* <TouchableHighlight
-        activeOpacity={0.6}
-        underlayColor="#DDDDDD"
-        onPress={() => alert('Pressed!')}
-      >
-        <Image 
-          source={require('./assets/icon.png')}
-          style={{width:200, height:200}}
-          onPress={hanlePress}
-        />
-      </TouchableHighlight>
-      <Text onPress={hanlePress}>Press me</Text> */}
-    </SafeAreaView>
   );
 }
 
-const containerStyle = {backgroundColor:"orange"}
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center', // Horizontal
-    // justifyContent: 'center', // Vertical
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+
+  dimensions:{
+    width: 100,
+    height: 100,
   },
 
-  view: {
-    backgroundColor: "green",
-    width: "100%",
-  }
-});
+  blue:{
+    backgroundColor: "blue",
+  },
+
+  gold:{
+    backgroundColor: "gold",
+  },
+
+  red:{
+    backgroundColor: "red",
+  },
+})
